@@ -1,0 +1,182 @@
+</html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% load static %}
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <title> Register  Survey </title>
+    
+  </head>
+  <body>
+    <main id="main">
+      <script type="text/javascript">
+        function redirectAdminPage() {
+          var root = window.location.origin;
+          location.href = root + '/admin';
+        }
+      </script>
+      <div style="display: flex; justify-content: flex-end">
+        <button onclick="redirectAdminPage()" id='admin-button'> Admin Dashboard </button>
+      </div>
+      
+      <div id="header">
+        <h1 id="title">  Data-oriented Boot-camp 2021 Register Form</h1>
+        <p id="description"><i> Please tell us your wishes when participating in the program </i></p>
+      </div>
+
+      <form action="" method="POST" id="survey-form" class="form">
+        {% csrf_token %}
+        <!-- {{form.as_p}} -->
+        <div class="form-group">
+          <label id="name-label" for="name"> Name </label>
+          <input name="name" type="text" id="name-input" placeholder="input your name here" required>
+        </div>
+
+        <div class="form-group">
+          <label id="email-label" for="email"> Email </label>
+          <input name="email" type="email" id="email-input" placeholder="example@gmail.com" required>
+        </div>
+
+        <div class="form-group">
+          <label id="number-label" for="age"> Date of birth </label>
+          <input type="date" id="date-input" placeholder="Age" name="birth_day">
+        </div>
+
+        <div class="form-group">
+        	<legend> Gender </legend>
+        	<label for="male" >
+            <input type="radio" value="true" name="gender" id="male-input"> Male </input>
+          </label>
+          <label for="female" >
+            <input type="radio" value="false" name="gender" id="female-input"> Female </input>
+          </label>
+          <label for="other" >
+            <input type="radio" value="" name="gender" id="other-input"> Other </input>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <legend> Current occupation </legend>
+          <select name="occupation" id="occupation-dropdown" required>
+            <option disabled selected value> Please choose current role </option>
+            <option value="student"> Student </option>
+            <option value="employee"> Fulltime Job </option>
+            <option value="lecturer"> Fulltime Learner </option>
+            <option value="prefer_no"> Prefer not to say </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <legend> Would you recommend to your friends our Internship program? </legend>
+          <label>
+            <input name="recommend" type="radio" value="no"> No </input>
+          </label>
+          <label>
+            <input name="recommend" type="radio" value="null"> Maybe </input>
+          </label>
+
+          <label>
+            <input name="recommend" type="radio" value="yes"> Definitely </input>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <legend> What projects do you expected for our Internship program? <span>(check all that apply)</span> </legend>
+          <!-- <div>
+            <input name="subjects" type="checkbox" value="front-end-projects">
+            <label for="front-end-projects"> Front-end Projects  </label>
+          </div>
+
+          <div>
+            <input name="subjects" type="checkbox" value="back-end-projects">
+            <label for="back-end-projects"> Back-end Projects</label>
+          </div>
+
+          <div>
+            <input name="subjects" type="checkbox" value="data-visualization">
+            <label for="data-visualization"> Data Visualization </label>
+          </div>
+
+          <div>
+            <input name="subjects" type="checkbox" value="ai-projects">
+            <label for="ai-projects"> A.I Projects</label>
+          </div>
+
+          <div>
+            <input name="subjects" type="checkbox" value="open-source-community">
+            <label for="open-source-community"> Open Source Community Projects</label>
+          </div> -->
+          <label> 
+            <input 
+              name="subjects" 
+              type="checkbox" 
+              value="front-end-projects"> 
+                Front-end Projects 
+            </input> 
+          </label>
+          <label>
+            <input 
+              name="subjects" 
+              type="checkbox" 
+              value="back-end-projects"> 
+                Back-end Projects 
+            </input>
+          </label>
+          <label>
+            <input 
+              name="subjects" 
+              type="checkbox" 
+              value="data-visualization"> 
+                Data Visualization 
+            </input>
+          </label>
+
+          <label>
+            <input 
+              name="subjects" 
+              type="checkbox" 
+              value="data-process-projects"> 
+                Data Processing Projects 
+            </input>
+          </label>
+
+          <label>
+            <input 
+              name="subjects" 
+              type="checkbox" 
+              value="ai-projects"> 
+                A.I Projects 
+            </input>
+          </label>
+          
+          <label>
+            <input 
+              name="subjects" 
+              type="checkbox" 
+              value="open-source-community"> 
+              Open Source Community 
+            </input> 
+          </label>
+        </div>
+          
+        <div class="form-group">
+          <legend> Any comments or suggestions? </legend>
+          <textarea name="comment" rows="8" placeholder="Enter your comment here..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <button id="submit" type="submit"> Submit </button>
+        </div>
+      </form>
+      {% if messages %}
+        {% for message in messages %}
+          {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+        {% endfor %}
+      {% endif %}
+    </main>
+  </body>
+</html>
